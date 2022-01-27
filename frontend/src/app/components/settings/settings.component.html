@@ -1,0 +1,63 @@
+<div class="size-container">
+  <h1>Waagen Einstellungen</h1>
+  <mat-tab-group>
+    <mat-tab *ngFor="let sl of scaleLocations" [label]="sl.name">
+      <ng-container *ngIf="sl.scales.length > 0; else emptyContainer">
+        <div class="card__container">
+          <mat-card *ngFor="let sd of sl.scales">
+            <mat-card-title>
+              <mat-form-field appearance="standard">
+                <input [(ngModel)]="sd.name" matInput>
+              </mat-form-field>
+            </mat-card-title>
+            <mat-card-content>
+              <div class="card__deviceInfo">
+                <p>
+                  Device-Id: {{ sd.deviceId }}
+                </p>
+                <div class="color-block">
+                  <input [(ngModel)]="sd.color" type="color">
+                </div>
+              </div>
+              <mat-divider inset></mat-divider>
+              <ng-container *ngIf="sd.scaleThreshold">
+                <h3>Alerting</h3>
+                <div class="card__alertingContainer">
+                  <mat-radio-group
+                    [(ngModel)]="sd.scaleThreshold.absolute"
+                    color="primary"
+                    class="absolute-radio-group">
+                    <mat-radio-button [value]="true" class="radio-button">
+                      Absolut
+                    </mat-radio-button>
+                    <mat-radio-button [value]="false" class="radio-button">
+                      Relativ
+                    </mat-radio-button>
+                  </mat-radio-group>
+                  <mat-form-field class="min-formField" appearance="standard">
+                    <mat-label>Minimum</mat-label>
+                    <input [(ngModel)]="sd.scaleThreshold.min" type="number" matInput>
+                  </mat-form-field>
+                  <mat-form-field class="max-formField" appearance="standard">
+                    <mat-label>Maximum</mat-label>
+                    <input [(ngModel)]="sd.scaleThreshold.max" type="number" matInput>
+                  </mat-form-field>
+                  <mat-slide-toggle color="primary" [(ngModel)]="sd.scaleThreshold.active">Aktiv</mat-slide-toggle>
+                </div>
+              </ng-container>
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-actions align="end">
+              <button (click)="saveDetail(sd)" mat-button>Speichern</button>
+              <mat-spinner *ngIf="sd.isUpdating" [diameter]="40"></mat-spinner>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </ng-container>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<ng-template #emptyContainer>
+  <h2 class="card__emptyContainerHeader">Keine Waagen</h2>
+</ng-template>

@@ -1,0 +1,18 @@
+<div id="main">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <img src="assets/logo.svg" />
+    <mat-form-field appearance="fill">
+      <mat-label>Benutzername</mat-label>
+      <input matInput formControlName="username" placeholder="Benutzername" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Passwort</mat-label>
+      <input matInput formControlName="password" type="password" placeholder="Passwort" />
+    </mat-form-field>
+    <button class="login-btn" mat-raised-button color="primary" type="submit">Login</button>
+  </form>
+  <button class="guest-btn" (click)="loginAsGuest()" mat-button>Anmelden als Gast</button>
+  <div class="error" *ngIf="error">
+    Beim Login ist ein Fehler aufgetreten.
+  </div>
+</div>

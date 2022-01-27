@@ -1,0 +1,73 @@
+<div class="size-container">
+  <div id="action-container">
+    <div id="select-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Standort</mat-label>
+        <mat-select [(ngModel)]="selectedLocation" (valueChange)="changeLocation($event)" name="standort">
+          <mat-option value="all">Alle</mat-option>
+          <mat-option *ngFor="let loc of scaleLocations" [value]="loc.id">
+            {{ loc.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Waagen</mat-label>
+        <mat-select [(ngModel)]="selectedScale" (valueChange)="changeScale($event)" name="waage">
+          <mat-option value="all">Alle</mat-option>
+          <mat-option *ngFor="let sca of selectableScaleDetails" [value]="sca.deviceId">
+            {{ sca.name }} <span class="deviceid">({{ sca.deviceId }})</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-button-toggle-group
+        id="button-toggle-container"
+        (change)="changeYear($event)"
+        value="1m"
+        name="selectedYear"
+        [vertical]="showContainer"
+      >
+        <mat-button-toggle value="1y">1 Jahr</mat-button-toggle>
+        <mat-button-toggle value="6m">6 Monate</mat-button-toggle>
+        <mat-button-toggle value="1m">1 Monat</mat-button-toggle>
+        <mat-button-toggle value="1w">1 Woche</mat-button-toggle>
+        <mat-button-toggle value="1t">1 Tag</mat-button-toggle>
+        <mat-button-toggle hidden #emptyButtonToggle value="none">None</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+
+  <div id="datepicker-container">
+    <button id="arrowLeft" (click)="handleChangeDate(true)" mat-button>
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <mat-form-field appearance="fill">
+      <mat-label>Zeitraum</mat-label>
+      <mat-date-range-input [formGroup]="datePickerRangeForm" [rangePicker]="picker">
+        <input matStartDate formControlName="start" placeholder="Start date" />
+        <input matEndDate formControlName="end" (dateChange)="handleDatePickerChange($event)" placeholder="End date" />
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <button id="arrowRight" (click)="handleChangeDate(false)" mat-button>
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+
+  <app-graph
+    [currentGraphData]="currentGraphData"
+    [isLoading]="isFetchingData"
+    [scaleDetails]="scaleDetails"
+    [selectableScaleDetails]="selectableScaleDetails"
+    [selectedScale]="selectedScale"
+    [singleScaleDetail]="singleScaleDetail"
+    [timeRange]="{ startTime: startTime, endTime: endTime }"
+  ></app-graph>
+
+  <mat-divider></mat-divider>
+
+  <app-table [selectedLocation]="selectedLocation" [selectedScale]="selectedScale" [tableData]="tableData"></app-table>
+</div>

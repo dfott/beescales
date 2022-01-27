@@ -1,0 +1,92 @@
+@import "../../variables";
+
+::ng-deep {
+  .mat-form-field-appearance-standard .mat-form-field-flex {
+    padding-top: 0 !important;
+  }
+
+  .mat-form-field-infix {
+    padding-bottom: 0.5em;
+    padding-top: 0;
+  }
+}
+
+.size-container {
+  margin: 0 auto;
+}
+
+.card__container {
+  margin-top: $grid-spacing;
+  margin-bottom: $grid-spacing;
+
+  grid-template-columns: 1fr;
+  display: grid;
+  column-gap: $grid-spacing;
+  row-gap: $grid-spacing;
+
+  p {
+    color: #6E7191;
+  }
+
+  mat-form-field {
+    min-width: 100%;
+  }
+}
+
+.color-block {
+  cursor: pointer;
+  width: 100%;
+  min-height: 25px;
+
+  input {
+    width: 100%;
+  }
+}
+
+mat-card-actions div {
+  display: flex;
+}
+
+.card__emptyContainerHeader {
+  text-align: center;
+  margin: 100px;
+  color: $label;
+}
+
+.card__deviceInfo {
+  padding-bottom: 15px;
+}
+
+.card__alertingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  mat-form-field {
+    min-width: 20%;
+  }
+
+}
+
+.min-formField {
+  padding-left: 20px;
+}
+
+.max-formField {
+  padding-right: 20px;
+}
+
+h3 {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+.absolute-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.radio-button {
+  margin: 5px;
+}

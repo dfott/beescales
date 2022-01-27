@@ -1,0 +1,86 @@
+@import '../../variables';
+
+::ng-deep {
+  .mat-button-toggle-checked {
+    background-color: $primary-light;
+  }
+}
+
+#button-toggle-container {
+  @media (max-width: 460px) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.size-container {
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .size-container {
+    width: 100%;
+  }
+}
+
+#action-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 2em;
+  width: 100%;
+}
+
+#select-container {
+  mat-form-field {
+    margin: 0 0.5rem;
+  }
+  display: flex;
+  @media (max-width: 460px) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.deviceid {
+  color: #6E7191;
+  font-size: 12px;
+}
+
+@media (min-width: 1000px) {
+  #action-container {
+    flex-direction: row;
+    margin-bottom: 1rem;
+  }
+}
+
+mat-divider {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+#datepicker-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  @media (max-width: 460px) {
+    overflow: hidden;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    #arrowLeft {
+      position: absolute;
+      left: -5%;
+      top: 15%;
+    }
+    #arrowRight {
+      position: absolute;
+      right: -5%;
+      top: 15%;
+    }
+  }
+}
