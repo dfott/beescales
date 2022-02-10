@@ -4,6 +4,7 @@ on:
     inputs:
       version:
         description: The current backend version, as set in the pom.xml
+        default: 0.0.1-SNAPSHOT
         required: true
 jobs:
   build-client:
@@ -15,17 +16,26 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12.x'
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4.2
+        with:
+          maven-version: 3.8.2
       - name: Build frontend
         run: |
           cd frontend
           npm ci
           npm run build
           cp -r dist/beescales/* ../backend/src/main/resources/public
-      - name: Check backend
+      - name: Build backend
         run: |
-          cd backend/src/main/resources/public
-          ls
-          pwd
-
-
-#        ${{ github.event.inputs.logLevel }}
+          cd backend
+          mvn clean install
+          ls target
+      - name: Upload jar on nextcloud
+        uses: trympet/nextcloud-artifacts-action@v2
+        with:
+          name: 'beescales.jar'
+          path: 'backend/target/beescales-${{ github.event.inputs.version }}.jar'
+          nextcloud-url: 'https://cloud.bht-berlin.de'
+          nextcloud-username: ${{ secrets.NEXTCLOUD_USERNAME }}
+          nextcloud-password: ${{ secrets.NEXTCLOUD_PASSWORD }}
