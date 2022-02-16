@@ -34,14 +34,16 @@
                       Relativ
                     </mat-radio-button>
                   </mat-radio-group>
-                  <mat-form-field class="min-formField" appearance="standard">
-                    <mat-label>Minimum</mat-label>
-                    <input [(ngModel)]="sd.scaleThreshold.min" type="number" matInput>
-                  </mat-form-field>
-                  <mat-form-field class="max-formField" appearance="standard">
-                    <mat-label>Maximum</mat-label>
-                    <input [(ngModel)]="sd.scaleThreshold.max" type="number" matInput>
-                  </mat-form-field>
+                  <div class="input-container">
+                    <mat-form-field class="min-formField" appearance="standard">
+                      <mat-label>Minimum</mat-label>
+                      <input [(ngModel)]="sd.scaleThreshold.min" type="number" matInput>
+                    </mat-form-field>
+                    <mat-form-field class="max-formField" appearance="standard">
+                      <mat-label>Maximum</mat-label>
+                      <input [(ngModel)]="sd.scaleThreshold.max" type="number" matInput>
+                    </mat-form-field>
+                  </div>
                   <mat-slide-toggle color="primary" [(ngModel)]="sd.scaleThreshold.active">Aktiv</mat-slide-toggle>
                 </div>
               </ng-container>

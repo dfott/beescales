@@ -9,3 +9,12 @@ table {
 .negative {
   color: #ff4747;
 }
+
+.mat-row .mat-cell, .mat-header-cell{
+  width: 300px;
+  text-align: center;
+}
+
+tr.mat-row, tr.mat-footer-row {
+  height: 40px;
+}

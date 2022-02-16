@@ -13,6 +13,7 @@ import { Graph } from 'src/app/Model/graph';
 import { MatButtonToggle } from '@angular/material/button-toggle';
 import { singleScaleToGraph } from 'src/app/helpers/singleScaleDetailMapper';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { DateHelper } from '../../helpers/date-helper';
 
 @Component({
   selector: 'app-dashboard',
@@ -82,11 +83,7 @@ export class DashboardComponent implements OnInit {
       }
     });
     this.breakpointObserver.observe(['(max-width: 460px)']).subscribe((state: BreakpointState) => {
-      if (state.matches) {
-        this.showContainer = true;
-      } else {
-        this.showContainer = false;
-      }
+      this.showContainer = state.matches;
     });
   }
 
@@ -103,7 +100,9 @@ export class DashboardComponent implements OnInit {
         new Date(this.datePickerRangeSelected.endTime)
       );
       this.startTime = startTime;
-      this.endTime = endTime;
+      const endDate = new Date(endTime);
+      endDate.setHours(endDate.getHours() - 2);
+      this.endTime = DateHelper.dateToISO(endDate);
       this.datePickerRangeForm.setValue({ start: this.startTime, end: this.endTime });
       this.scaleServiceApi.getAllDataWithRange(startTime, endTime, showDetails).subscribe((res) => {
         this.scaleService.setGraphScales(res);

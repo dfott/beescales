@@ -1,7 +1,10 @@
 <div id="main-container" *ngIf="isActive">
   <div id="logo-container">
     <img src="assets/logo.svg" />
-    <p>Beescales</p>
+    <div>
+      <p>Berliner Honig</p>
+      <p>Stockwaagen</p>
+    </div>
   </div>
   <div id="tab-container">
     <div routerLink="/dashboard" [class.selected]="isRoute('/dashboard')">
