@@ -75,7 +75,7 @@ public class EmailService {
     MimeMessage message = mailSender.createMimeMessage();
     MimeMessageHelper helper = new MimeMessageHelper(message);
 
-    helper.setTo("receiver@mail.de");
+    helper.setTo("heinz.junkes@bht-berlin.de");
     helper.setFrom(new InternetAddress("info@beescales.com", "NoReply-JD"));
     helper.setSubject(subject);
 
