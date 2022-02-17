@@ -23,7 +23,7 @@ export class TableComponent implements OnChanges {
       if (changes.tableData) {
         this.tableData = changes.tableData.currentValue;
       }
-      this.data = new MatTableDataSource(this.filterTable(this.tableData));
+      this.data = new MatTableDataSource(this.filterTable([...this.tableData].reverse()));
       this.data.paginator = this.paginator;
     }
   }
