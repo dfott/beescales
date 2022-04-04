@@ -9,10 +9,10 @@ import java.util.Properties;
 @Configuration
 public class AdminConfiguration {
 
-  @Value("${ADMIN_USER}")
+  @Value("${ADMIN_USER:user}")
   private String username;
 
-  @Value("${ADMIN_PASS}")
+  @Value("${ADMIN_PASS:password123}")
   private String password;
 
   public String getUsername() {
